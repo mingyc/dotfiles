@@ -91,8 +91,8 @@ install_oh_my_zsh () {
       mv $HOME/.zshrc $HOME/.zshrc.backup
     fi
 
-    info "\033[0;34mUsing the Oh My Zsh template file and adding it to $HOME/.zshrc\033[0m"
-    cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
+    info "\033[0;34mUsing my Oh My Zsh config file and adding it to $HOME/.zshrc\033[0m"
+    cp $DOTFILES_ROOT/zsh/zshrc.oh-my-zsh $HOME/.zshrc
 
     info "\033[0;34mCopying your current PATH and adding it to the end of $HOME/.zshrc for you.\033[0m"
     echo "export PATH=\$PATH:$PATH" >> $HOME/.zshrc
