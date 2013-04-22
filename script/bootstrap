@@ -26,6 +26,11 @@ fail () {
   exit
 }
 
+update_submodules () {
+  info 'update git submodules'
+  git submodule update --init --recursive
+}
+
 setup_gitconfig () {
   if ! [ -f git/gitconfig.symlink ]
   then
@@ -41,6 +46,31 @@ setup_gitconfig () {
     success 'gitconfig'
   fi
 }
+
+setup_vim () {
+  if ! [ -L vim.symlink ]
+  then
+      info 'setup vim'
+      ln -s $DOTFILES_ROOT/vim $DOTFILES_ROOT/vim.symlink
+
+      success 'vim'
+  fi
+  if ! [ -L vim/vimrc.symlink ]
+  then
+    info 'setup vimrc'
+    ln -s $DOTFILES_ROOT/vim/vimrc $DOTFILES_ROOT/vim/vimrc.symlink
+
+    success 'vimrc'
+  fi
+  if ! [ -L vim/gvimrc.symlink ]
+  then
+    info 'setup gvimrc'
+    ln -s $DOTFILES_ROOT/vim/gvimrc $DOTFILES_ROOT/vim/gvimrc.symlink
+
+    success 'gvimrc'
+  fi
+}
+
 
 link_files () {
   ln -s $1 $2
@@ -115,6 +145,8 @@ install_dotfiles () {
 }
 
 setup_gitconfig
+update_submodules
+setup_vim
 install_dotfiles
 
 # If we are on a mac, lets install and setup homebrew
