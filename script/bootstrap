@@ -10,6 +10,7 @@ echo ''
 
 info () {
   printf "  [ \033[00;34m..\033[0m ] $1"
+  echo ''
 }
 
 user () {
@@ -27,14 +28,16 @@ fail () {
 }
 
 update_submodules () {
-  info 'update git submodules'
+  info 'Update git submodules ...'
   git submodule update --init --recursive
+
+  success "git submodule update --init --recursive"
 }
 
 setup_gitconfig () {
   if ! [ -f git/gitconfig.symlink ]
   then
-    info 'setup gitconfig'
+    info 'Setup gitconfig ...'
 
     user ' - What is your github author name?'
     read -e git_authorname
@@ -48,29 +51,71 @@ setup_gitconfig () {
 }
 
 setup_vim () {
-  if ! [ -L vim.symlink ]
+  if ! [ -L system/vim.symlink ]
   then
-      info 'setup vim'
-      ln -s $DOTFILES_ROOT/vim $DOTFILES_ROOT/vim.symlink
+    info 'Setup vim ...'
+    ln -s $DOTFILES_ROOT/vim $DOTFILES_ROOT/system/vim.symlink
 
-      success 'vim'
+    success 'vim'
   fi
-  if ! [ -L vim/vimrc.symlink ]
+  if ! [ -L system/vimrc.symlink ]
   then
-    info 'setup vimrc'
-    ln -s $DOTFILES_ROOT/vim/vimrc $DOTFILES_ROOT/vim/vimrc.symlink
+    info 'Setup vimrc ...'
+    ln -s $DOTFILES_ROOT/vim/vimrc $DOTFILES_ROOT/system/vimrc.symlink
 
     success 'vimrc'
   fi
-  if ! [ -L vim/gvimrc.symlink ]
+  if ! [ -L system/gvimrc.symlink ]
   then
-    info 'setup gvimrc'
-    ln -s $DOTFILES_ROOT/vim/gvimrc $DOTFILES_ROOT/vim/gvimrc.symlink
+    info 'Setup gvimrc ...'
+    ln -s $DOTFILES_ROOT/vim/gvimrc $DOTFILES_ROOT/system/gvimrc.symlink
 
     success 'gvimrc'
   fi
 }
 
+install_oh_my_zsh () {
+  info "Installing Oh My Zsh ..."
+  if [ -d $HOME/.oh-my-zsh ] || [ -L $HOME/.oh-my-zsh ]
+  then
+    info "\033[0;33mYou already have Oh My Zsh installed.\033[0m"
+  else
+    info "\033[0;34mCloning Oh My Zsh ...\033[0m"
+    ln -s $DOTFILES_ROOT/oh-my-zsh $HOME/.oh-my-zsh
+
+    info "\033[0;34mLooking for an existing zsh config ...\033[0m"
+    if [ -f $HOME/.zshrc ] || [ -h $HOME/.zshrc ]
+    then
+      info "\033[0;33mFound $HOME/.zshrc.\033[0m"
+      info "\033[0;32mBacking up to $HOME/.zshrc.backup\033[0m"
+      mv $HOME/.zshrc $HOME/.zshrc.backup
+    fi
+
+    info "\033[0;34mUsing the Oh My Zsh template file and adding it to $HOME/.zshrc\033[0m"
+    cp $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc
+
+    info "\033[0;34mCopying your current PATH and adding it to the end of $HOME/.zshrc for you.\033[0m"
+    echo "export PATH=\$PATH:$PATH" >> $HOME/.zshrc
+
+
+    info "\033[0;32m"'         __                                     __   '"\033[0m"
+    info "\033[0;32m"'  ____  / /_     ____ ___  __  __   ____  _____/ /_  '"\033[0m"
+    info "\033[0;32m"' / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ '"\033[0m"
+    info "\033[0;32m"'/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / '"\033[0m"
+    info "\033[0;32m"'\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '"\033[0m"
+    info "\033[0;32m"'                        /____/                       '"\033[0m"
+
+    info "\n\n \033[0;32m....is now installed.\033[0m"
+
+    info "\033[0;34mTime to change your default shell to zsh!\033[0m"
+    chsh -s `which zsh`
+
+    /usr/bin/env zsh
+    source ~/.zshrc
+  fi
+
+  success 'oh-my-zsh'
+}
 
 link_files () {
   ln -s $1 $2
@@ -78,7 +123,7 @@ link_files () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  info 'Installing dotfiles ...'
 
   overwrite_all=false
   backup_all=false
@@ -148,6 +193,7 @@ setup_gitconfig
 update_submodules
 setup_vim
 install_dotfiles
+install_oh_my_zsh
 
 # If we are on a mac, lets install and setup homebrew
 if [ "$(uname -s)" == "Darwin" ]
