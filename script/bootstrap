@@ -80,7 +80,7 @@ install_oh_my_zsh () {
   then
     info "\033[0;33mYou already have Oh My Zsh installed.\033[0m"
   else
-    info "\033[0;34mCloning Oh My Zsh ...\033[0m"
+    info "\033[0;34mSymlinking Oh My Zsh ...\033[0m"
     ln -s $DOTFILES_ROOT/oh-my-zsh $HOME/.oh-my-zsh
 
     info "\033[0;34mLooking for an existing zsh config ...\033[0m"
@@ -93,6 +93,11 @@ install_oh_my_zsh () {
 
     info "\033[0;34mUsing my Oh My Zsh config file and adding it to $HOME/.zshrc\033[0m"
     cp $DOTFILES_ROOT/zsh/zshrc.oh-my-zsh $HOME/.zshrc
+
+    info "\033[0;34mLinking custom configuration from $DOTFILES_ROOT/system/*.zsh to $HOME/.oh-my-zsh/cutom\033[0m"
+    for custom_config_file in $DOTFILES_ROOT/system/*.zsh; do
+        ln -s $custom_config_file $HOME/.oh-my-zsh/custom/$(basename $custom_config_file)
+    done
 
     info "\033[0;34mCopying your current PATH and adding it to the end of $HOME/.zshrc for you.\033[0m"
     echo "export PATH=\$PATH:$PATH" >> $HOME/.zshrc
