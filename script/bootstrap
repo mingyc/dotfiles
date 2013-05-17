@@ -102,6 +102,9 @@ install_oh_my_zsh () {
     info "\033[0;34mCopying your current PATH and adding it to the end of $HOME/.zshrc for you.\033[0m"
     echo "export PATH=\$PATH:$PATH" >> $HOME/.zshrc
 
+    info "\033[0;34mPrevent PATH recursion[0m"
+    echo "typeset -gU PATH" >> $HOME/.zshrc
+
 
     info "\033[0;32m"'         __                                     __   '"\033[0m"
     info "\033[0;32m"'  ____  / /_     ____ ___  __  __   ____  _____/ /_  '"\033[0m"
