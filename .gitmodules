@@ -6,4 +6,4 @@
 	url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule "tmux"]
 	path = tmux
-	url = git://github.com/Milnex/tmux-config.git
+	url = git@github.com:Milnex/tmux-config.git
