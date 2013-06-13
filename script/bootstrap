@@ -84,6 +84,16 @@ setup_tmux() {
   fi
 }
 
+setup_gdb() {
+  if ! [ -L system/gdbinit.symlink ]
+  then
+    info 'Setup gdbinit ...'
+    ln -s $DOTFILES_ROOT/gdb/gdbinit $DOTFILES_ROOT/system/gdbinit.symlink
+
+    success 'gdbinit'
+  fi
+}
+
 install_oh_my_zsh () {
   info "Installing Oh My Zsh ..."
   if [ -d $HOME/.oh-my-zsh ] || [ -L $HOME/.oh-my-zsh ]
@@ -211,6 +221,7 @@ setup_gitconfig
 update_submodules
 setup_vim
 setup_tmux
+setup_gdb
 install_dotfiles
 install_oh_my_zsh
 

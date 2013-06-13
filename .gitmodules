@@ -7,3 +7,6 @@
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:Milnex/tmux-config.git
+[submodule "gdb"]
+	path = gdb
+	url = git://github.com/gdbinit/Gdbinit.git
