@@ -75,7 +75,7 @@ setup_vim () {
 }
 
 setup_tmux() {
-  if ! [ -L system/tmux.conf.symlink]
+  if ! [ -L system/tmux.conf.symlink ]
   then
     info 'Setup tmux.conf ...'
     ln -s $DOTFILES_ROOT/tmux/tmux.conf $DOTFILES_ROOT/system/tmux.conf.symlink
