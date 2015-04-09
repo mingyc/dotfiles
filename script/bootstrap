@@ -74,6 +74,11 @@ setup_vim () {
   fi
 }
 
+setup_vim_vundle () {
+    git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+    success 'vundle'
+}
+
 setup_tmux() {
   if ! [ -L system/tmux.conf.symlink ]
   then
@@ -143,6 +148,7 @@ install_oh_my_zsh () {
   fi
 
   success 'oh-my-zsh'
+  info "Run 'vim -u $HOME/.vim/bundles.vim +BundleInstall +q' to install all vim plugins!"
 }
 
 link_files () {
@@ -223,6 +229,7 @@ setup_vim
 setup_tmux
 setup_gdb
 install_dotfiles
+setup_vim_vundle
 install_oh_my_zsh
 
 # If we are on a mac, lets install and setup homebrew
