@@ -1,0 +1,8 @@
+.zsh_history
+.zcompdump*
+.oh-my-zsh/cache/
+
+.vim/
+.viminfo
+
+.gdb/
