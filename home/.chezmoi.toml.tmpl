@@ -1,5 +1,11 @@
-{{- $email := promptString "email" -}}
+{{- $name := "Ming-Ying Chung" -}}
+{{- $email := promptString "Email" -}}
+{{- $profile := default "personal" (promptString "Dotfiles Profile (persona/work)") -}}
+{{- $github_user := "mingyc" -}}
+
 
 [data]
-    name = "Ming-Ying Chung"
+    name = {{ $name | quote  }}
     email = {{ $email | quote }}  
+    profile = {{ $profile | quote }}
+    github_user = {{ $github_user | quote  }}
