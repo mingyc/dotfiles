@@ -1,7 +1,11 @@
 export PATH="$PATH:$HOME/.local/bin"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
-export EDITOR='vim'
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# https://www.soberkoder.com/better-zsh-history/
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+setopt INC_APPEND_HISTORY

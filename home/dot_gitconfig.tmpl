@@ -1,38 +1,28 @@
-# Sample gitconfig
-#
-
-[hub]
-        protocol = https
 [user]
-        name = "{{ .name }}"
-        email = "{{ .email }}"
-[credential]
-        helper = osxkeychain
+        name = {{ .name }}
+        email = {{ .email }}
 [alias]
         co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributers = !$ZSH/bin/git-rank-contributers
-        count   = !git shortlog -sn
 [color]
         diff = auto
         status = auto
         branch = auto
+        interactive = auto
         ui = true
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = {{ .editor  }}
 [apply]
         whitespace = nowarn
-[mergetool]
-        keepBackup = false
+[diff]
+    	tool = vimdiff
 [difftool]
         prompt = false
+[merge]
+        conflictstyle = diff3
 [help]
         autocorrect = 1
+[hub]
+        protocol = https
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to surpress warning message
         default = simple

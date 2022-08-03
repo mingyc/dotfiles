@@ -1,13 +1,11 @@
-*/README.md
+**/README.md
 .zsh_history
-.zcompdump*
-.oh-my-zsh/cache/
+/**/.zcompdump*
+.dotfiles/oh-my-zsh/cache/**
+.dotfiles/zsh/custom/themes/powerlevel10k/**/*zwc
 
-.vim/
 .viminfo
 
-.gdb/
-
 {{ if ne .profile "work" }}
-.dotfiles-work
+/**/*work*
 {{ end  }}

@@ -1,7 +1,8 @@
 {{- $name := "Ming-Ying Chung" -}}
 {{- $email := promptString "Email" -}}
-{{- $profile := default "personal" (promptString "Dotfiles Profile (persona/work)") -}}
+{{- $profile := default "personal" (promptString "Dotfiles Profile (personal/work)") -}}
 {{- $github_user := "mingyc" -}}
+{{- $editor := "vim" }}
 
 
 [data]
@@ -9,3 +10,4 @@
     email = {{ $email | quote }}  
     profile = {{ $profile | quote }}
     github_user = {{ $github_user | quote  }}
+    editor = {{ $editor | quote  }}
