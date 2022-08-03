@@ -36,6 +36,7 @@ bufferfile $HOME/.screen-exchange  # keep the buffer exchange file out of /tmp
 
 # Enable 256 Colors  (http://frexx.de/xterm-256-notes/)  ######################
 #
+term "screen-256color"
 # terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
 attrcolor b ".I"
@@ -44,22 +45,20 @@ termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 # erase background with current bg color
 defbce "on"
 
+# encoding
+encoding UTF-8
+
 
 # Create windows on startup ###################################################
 #screen -t irssi
-screen -t main
+#screen -t main
 #screen -t work
-select 0
+#select 0
 
-# Caption #####################################################################
-caption always "%{= wk} %{= KY} [%n]%t @ %H %{-} %= %{= KR} %l %{-} | %{= KG} %Y-%m-%d %{-} "
+# Default directory for new screen
+chdir {{ .new_screen_dir }}
 
 # Hardstatus ##################################################################
 # Adds a nice "tabbed" look, kinda long but gracefully pushes the status stuff off-screen if need be
-hardstatus alwayslastline "%{wk}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{wk}%?%+Lw %= %{mk}@%H %{ck}%Y-%m-%d %{yk}%D %{gk}%0c %{bk}%l"
+hardstatus alwayslastline "%{kG}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{kG}%?%+Lw %= %{ck}[%H:%S] %{gk}%Y-%m-%d %D %0c %{bk}%l"
 
-
-# TODO: Detail every part of the hardstatus line below
-# %{wk}     - Default white on black
-
-# EOF

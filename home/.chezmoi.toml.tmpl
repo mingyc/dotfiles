@@ -1,8 +1,19 @@
+# Generated data stored in `~/.config/chezmoi/chezmoi.toml`
+
 {{- $name := "Ming-Ying Chung" -}}
 {{- $email := promptString "Email" -}}
-{{- $profile := default "personal" (promptString "Dotfiles Profile (personal/work)") -}}
+{{- $profile := "personal" -}}
 {{- $github_user := "mingyc" -}}
 {{- $editor := "vim" }}
+{{- $new_screen_dir := .chezmoi.homeDir }}
+
+{{- if (env "ASK") }}
+{{- $name = promptString "Full Name" $name -}}
+{{- $email = promptString "Email" $email -}}
+{{- $profile = promptString "Dotfiles Profile Name [personal/work]" $profile -}}
+{{- $github_user = promptString "GitHub Username" $github_user -}}
+{{- $new_screen_dir := promptString "GNU Screen's New Screen Directory" $new_screen_dir -}}
+{{- end }}
 
 
 [data]
@@ -11,3 +22,4 @@
     profile = {{ $profile | quote }}
     github_user = {{ $github_user | quote  }}
     editor = {{ $editor | quote  }}
+    new_screen_dir = {{ $new_screen_dir | quote }}
