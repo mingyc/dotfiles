@@ -27,7 +27,7 @@
 [push]
         default = simple
 
-{{- if $profile := "work" }}
+{{- if (eq .profile "work") }}
 [include]
     path = {{- joinPath .chezmoi.homeDir ".dotfiles/git/gitconfig.work" -}}
 {{- end }}
