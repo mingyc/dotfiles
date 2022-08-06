@@ -1,8 +1,8 @@
 **/README.md
 .zsh_history
 /**/.zcompdump*
-.dotfiles/oh-my-zsh/cache/**
-.dotfiles/zsh/custom/themes/powerlevel10k/**/*zwc
+.config/oh-my-zsh/cache/**
+.config/zsh/custom/themes/powerlevel10k/**/*zwc
 
 .viminfo
 
