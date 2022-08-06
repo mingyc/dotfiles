@@ -10,6 +10,12 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+[".dotfiles/zsh/custom/plugins/zsh-vi-mode"]
+  type = "archive"
+  url = "https://github.com/jeffreytse/zsh-vi-mode/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
 [".dotfiles/zsh/custom/themes/powerlevel10k"]
   type = "archive"
   url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
