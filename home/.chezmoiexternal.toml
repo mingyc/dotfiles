@@ -32,4 +32,9 @@
 [".config/kitty/kitty-themes/themes/Solarized_Dark_Higher_Contrast.conf"]
   type = "file"
   url = "https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Solarized_Dark_Higher_Contrast.conf"
-
+[".config/tmux"]
+  type = "archive"
+  url = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
+  exact = true
+  stripComponents = 1
+  refreshPeriod = "168h"
