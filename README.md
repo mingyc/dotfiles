@@ -7,7 +7,7 @@ My dotfiles managed with [chezmoi](https://chezmoi.io).
 ## Installation
 
 ```sh
-sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply mingyc
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -b .local/bin -- init --apply mingyc
 ```
 
 ### Debug

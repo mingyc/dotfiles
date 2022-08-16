@@ -29,5 +29,5 @@
 
 {{- if (eq .profile "work") }}
 [include]
-    path = {{- joinPath .chezmoi.homeDir ".dotfiles/git/gitconfig.work" -}}
+    path = {{- joinPath .chezmoi.homeDir ".config/git/gitconfig.work" -}}
 {{- end }}
