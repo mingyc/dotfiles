@@ -5,6 +5,9 @@
 .config/oh-my-zsh/cache/**
 .config/zsh/custom/themes/powerlevel10k/**/*zwc
 
+.config/fzf/bin/**
+.config/fzf/*.zsh
+
 .viminfo
 
 {{ if ne .profile "work" }}

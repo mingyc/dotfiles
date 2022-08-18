@@ -14,5 +14,8 @@ fi
 
 export EDITOR={{ .editor }}
 
+# https://github.com/junegunn/fzf/blob/master/README.md#using-git
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
 ##### Customization Above #####
 typeset -gU PATH
