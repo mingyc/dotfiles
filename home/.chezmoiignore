@@ -1,11 +1,12 @@
 **/README.md
 .zsh_history
 /**/.zcompdump*
+/**/.github/**
 .config/oh-my-zsh/cache/**
 .config/zsh/custom/themes/powerlevel10k/**/*zwc
 
 .viminfo
 
 {{ if ne .profile "work" }}
-/**/*work*
+/**/*.work.*
 {{ end  }}
