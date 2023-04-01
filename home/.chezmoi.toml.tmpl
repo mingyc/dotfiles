@@ -1,13 +1,15 @@
 # Generated data stored in `~/.config/chezmoi/chezmoi.toml`
 
 {{- $name := "Ming-Ying Chung" -}}
-{{- $email := promptString "Email" -}}
+{{- $email := "itsmings@gmail.com" -}}
 {{- $profile := "personal" -}}
 {{- $github_user := "mingyc" -}}
 {{- $editor := "vim" }}
 {{- $new_screen_dir := .chezmoi.homeDir }}
 
-{{- if (env "ASK") }}
+{{- $chezmoiInteractive := and stdinIsATTY (has "--interactive" .chezmoi.args) -}}
+
+{{- if $chezmoiInteractive }}
 {{- $name = promptString "Full Name" $name -}}
 {{- $email = promptString "Email" $email -}}
 {{- $profile = promptString "Dotfiles Profile Name [personal/work]" $profile -}}

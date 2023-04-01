@@ -30,4 +30,5 @@ require git "initialize dotfiles"
 require vim "edit text"
 
 DOTFILES="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+# Replace current process with chezmoi.
 exec "$CHEZMOI" init --apply "--source=$DOTFILES"
