@@ -2,6 +2,15 @@
 
 set -e
 
+require() {
+  CMD=$1
+  REASON=$2
+  if [ ! "$(command -v $CMD)" ]; then
+    echo "Must have $CMD installed to $REASON." >&2
+    exit 1
+  fi
+}
+
 if [ ! "$(command -v chezmoi)" ]; then
   BINDIR="$HOME/.local/bin"
   CHEZMOI="$BINDIR/chezmoi"
@@ -16,6 +25,9 @@ if [ ! "$(command -v chezmoi)" ]; then
 else
   CHEZMOI=chezmoi
 fi
+
+require git "initialize dotfiles"
+require vim "edit text"
 
 DOTFILES="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 exec "$CHEZMOI" init --apply "--source=$DOTFILES"
