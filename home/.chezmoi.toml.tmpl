@@ -1,21 +1,30 @@
-# Generated data stored in `~/.config/chezmoi/chezmoi.toml`
-
 {{- $name := "Ming-Ying Chung" -}}
 {{- $email := "itsmings@gmail.com" -}}
 {{- $profile := "personal" -}}
 {{- $github_user := "mingyc" -}}
 {{- $editor := "vim" }}
 {{- $new_screen_dir := .chezmoi.homeDir }}
+{{- $work_repo := "" }}
 
-{{- $chezmoiInteractive := and stdinIsATTY (has "--interactive" .chezmoi.args) -}}
 
-{{- if $chezmoiInteractive }}
-{{- $name = promptString "Full Name" $name -}}
-{{- $email = promptString "Email" $email -}}
-{{- $profile = promptString "Dotfiles Profile Name [personal/work]" $profile -}}
-{{- $github_user = promptString "GitHub Username" $github_user -}}
-{{- $new_screen_dir := promptString "GNU Screen's New Screen Directory" $new_screen_dir -}}
-{{- end }}
+{{- if ne (env "CHEZMOI_USER_EMAIL") "" -}}
+{{-   $email = (env "CHEZMOI_USER_EMAIL") -}}
+{{- end -}}
+
+{{- if ne (env "CHEZMOI_USER_WORK_REPO") "" -}}
+{{-   $profile = "work" -}}
+{{-   $work_repo = (env "CHEZMOI_USER_WORK_REPO") -}}
+{{- end -}}
+
+
+{{- $interactive := and stdinIsATTY (env "CHEZMOI_INTERACTIVE") -}}
+{{- if $interactive -}}
+{{-   $name = promptString "Full Name" $name -}}
+{{-   $email = promptString "Email" $email -}}
+{{-   $profile = promptString "Dotfiles Profile Name [personal/work]" $profile -}}
+{{-   $github_user = promptString "GitHub Username" $github_user -}}
+{{-   $new_screen_dir = promptString "GNU Screen's New Screen Directory" $new_screen_dir -}}
+{{- end -}}
 
 
 [data]
@@ -25,3 +34,4 @@
     github_user = {{ $github_user | quote  }}
     editor = {{ $editor | quote  }}
     new_screen_dir = {{ $new_screen_dir | quote }}
+    work_repo = {{ $work_repo | quote }}

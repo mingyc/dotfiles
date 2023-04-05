@@ -44,3 +44,9 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
+{{- if and (eq .profile "work") (ne .work_repo "") }}
+[".config/dotfiles-work"]
+  type = "git-repo"
+  url = "{{- .work_repo }}"
+  refreshPeriod = "168h"
+{{- end }}

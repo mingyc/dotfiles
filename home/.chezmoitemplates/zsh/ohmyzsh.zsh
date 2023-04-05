@@ -13,6 +13,9 @@ plugins=(
   history
   zsh-vi-mode
   # zsh-syntax-highlighting
+  {{- if eq .profile "work" }}
+  work-profile
+  {{- end }}
 )
 
 source $ZSH/oh-my-zsh.sh
