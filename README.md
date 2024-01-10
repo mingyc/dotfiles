@@ -12,7 +12,7 @@ Check out this repo & install:
 git clone https://github.com/mingyc/dotfiles.git && dotfiles/install.sh
 ```
 
-Install remotely:
+Install remotely (without checking out this repo):
 
 ```sh
 sh -c "$(curl -fsLS https://raw.githubusercontent.com/mingyc/dotfiles/master/install.sh)" -- --remote

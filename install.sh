@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -41,6 +41,7 @@ fi
 
 require git "initialize dotfiles"
 require vim "edit text"
+require zsh "be the default shell"
 
 # https://stackoverflow.com/a/4884411
 while [[ $1 == -* ]]; do
@@ -49,13 +50,13 @@ while [[ $1 == -* ]]; do
     --remote) REMOTE_INSTALL=1; shift;;
     --email) if [[ $# > 1 && $2 != -* ]]; then
                export CHEZMOI_USER_EMAIL=$2; shift 2
-             else 
+             else
                echo "--email requires an argument" 1>&2
                exit 1
              fi ;;
     --work-repo) if [[ $# > 1 && $2 != -* ]]; then
                    export CHEZMOI_USER_WORK_REPO=$2; shift 2
-                 else 
+                 else
                    echo "--work-repo requires an argument" 1>&2
                    exit 1
                  fi ;;
@@ -64,9 +65,8 @@ while [[ $1 == -* ]]; do
   esac
 done
 
-
 # Replace current process with chezmoi.
-if [[ $REMOTE_INSTALL ]]; then
+if [[ $REMOTE_INSTALL -eq "1" ]]; then
   exec "$CHEZMOI" init --apply $DOTFILES_USER
 else
   DOTFILES_LOCAL="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
